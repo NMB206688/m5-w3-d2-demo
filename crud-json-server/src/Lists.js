@@ -1,7 +1,17 @@
 // src/Lists.js
 import React from "react";
+import UpdateList from "./UpdateList";
+import DeleteList from "./DeleteList";
 
-export default function Lists({ data = [] }) {
+export default function Lists({
+  data = [],
+  getSingleList,
+  handleChange,
+  updateList,
+  deleteList,
+  singleTitle,
+  singleAuthor
+}) {
   if (!data.length) {
     return <div className="alert alert-info m-3">No data to display.</div>;
   }
@@ -29,10 +39,23 @@ export default function Lists({ data = [] }) {
                     <td>{book.title}</td>
                     <td>{book.author}</td>
                     <td>
-                      <button className="btn btn-sm btn-warning">Update</button>
+                      <UpdateList
+                        id={book.id}
+                        singleTitle={singleTitle}
+                        singleAuthor={singleAuthor}
+                        getSingleList={getSingleList}
+                        handleChange={handleChange}
+                        updateList={updateList}
+                      />
                     </td>
                     <td>
-                      <button className="btn btn-sm btn-danger">Delete</button>
+                      <DeleteList
+                        id={book.id}
+                        singleTitle={singleTitle}
+                        singleAuthor={singleAuthor}
+                        getSingleList={getSingleList}
+                        deleteList={deleteList}
+                      />
                     </td>
                   </tr>
                 ))}
